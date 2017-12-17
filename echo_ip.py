@@ -26,7 +26,7 @@ def echo_ip(request=None, response=None):
     content = ['{}: {}'.format(value, ip_detail[key]) for key, value in data_format.items() if ip_detail.get(key)]
 
     response.set_header('Content-Type', 'text/plain; charset=utf-8')
-    return '  '.join(content)
+    return '\n'.join(content)
 
 
 @hug.not_found(output=hug.output_format.text)
