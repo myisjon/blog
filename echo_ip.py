@@ -8,7 +8,10 @@ from utils import get_ip_detail
 def echo_ip(request=None, response=None):
     really_ip = request.headers.get('X-FORWARDED-FOR')
     really_ip = really_ip if really_ip else request.headers.get('X-REAL-IP')
-    ip_detail = get_ip_detail(really_ip)
+    try:
+        ip_detail = get_ip_detail(really_ip)
+    except:
+        return really_ip
     if ip_detail.get('code') != 0 or not ip_detail.get('data'):
         return really_ip
 
