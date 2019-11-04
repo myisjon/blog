@@ -12,7 +12,7 @@ def echo_ip(request=None, response=None):
         ip_detail = get_ip_detail(really_ip)
     except:
         return really_ip
-    if ip_detail.get('code') != 0 or not ip_detail.get('data'):
+    if ip_detail.get('ret') != 200 or not ip_detail.get('data'):
         return really_ip
 
     ip_detail = ip_detail['data']

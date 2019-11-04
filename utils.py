@@ -1,11 +1,14 @@
 import ssl
 import json
+import logging
 from urllib import request
+
+logging.basicConfig(filename='request_ip.log', level=logging.INFO)
 
 
 APPCODE = 'APPCODE'
-HOST = 'https://dm-81.data.aliyun.com'
-PATH = '/rest/160601/ip/getIpInfo.json'
+HOST = 'https://api01.aliyun.venuscn.com'
+PATH = '/ip'
 QUERYS = 'ip={ip}'
 
 try:
@@ -60,4 +63,5 @@ def get_ip_detail(ip, uri=''):
     resp = request.urlopen(req, context=ctx)
 
     content = json.loads(resp.read().decode('utf-8'))
+    logging.info(json.dumps(content))
     return content
